@@ -20,7 +20,7 @@ public interface MockMvcDAO {
 	
 	public MemberVO select(String id);
 	
-	public int update (String field, String changevalue);
+	public int update(String field,String id,String changevalue);
 	
 	public int delete (String id);
 	

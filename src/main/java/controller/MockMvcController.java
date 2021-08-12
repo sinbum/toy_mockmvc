@@ -48,9 +48,9 @@ public class MockMvcController {
 		return mv; 
 		}
 	
-	public ModelAndView update (String field,String changevalue) {
+	public ModelAndView update (String field,String id,String changevalue) {
 		
-		mock.update(field,changevalue);
+		mock.update(field,id,changevalue);
 		return mv; 
 		}
 	

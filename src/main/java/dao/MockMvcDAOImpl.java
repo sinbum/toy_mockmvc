@@ -29,6 +29,9 @@ public class MockMvcDAOImpl implements MockMvcDAO{
 	int result;
 	ResultSet rs;
 	
+	String id;
+	String password;
+	
 	
 	public MockMvcDAOImpl() {
 	 try {
@@ -66,8 +69,8 @@ public class MockMvcDAOImpl implements MockMvcDAO{
 		try {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				String id = rs.getString("id");
-				String password = rs.getString("password");
+				id = rs.getString("id");
+				password = rs.getString("password");
 				
 				MemberVO membervo = new MemberVO(id,password);
 				
@@ -85,16 +88,43 @@ public class MockMvcDAOImpl implements MockMvcDAO{
 
 	@Override
 	public MemberVO select(String id) {
-		sql="";
+		sql="select * from member where id = ?";
+		MemberVO mv;
+		try {
+			rs=pstmt.executeQuery();
+			
+			if (rs.next()) {
+				id = rs.getString("id");
+				password = rs.getString("passowrd");
+				mv= new MemberVO(id,password);
+				return mv;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return null;
 	}
 
 	@Override
-	public int update(String field,String changevalue) {
-		sql="";
+	public int update(String field,String id,String changevalue) {
+		sql="update member set id=? where id = ?";
 		
-		return 0;
+		try {
+			
+			pstmt.setString(1, changevalue);
+			pstmt.setString(2, id);
+			result=pstmt.executeUpdate();
+						
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 	@Override

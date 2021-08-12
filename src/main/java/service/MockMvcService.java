@@ -31,8 +31,8 @@ public class MockMvcService {
 		return mockdao.select(id);
 		}
 	
-	public int update (String field,String changevalue) {
-		return mockdao.update(field,changevalue);
+	public int update (String field,String id,String changevalue) {
+		return mockdao.update(field,id,changevalue);
 		}
 	
 	public int delete (String id) {
