@@ -4,7 +4,8 @@ import java.util.List;
 
 import vo.memberVO;
 
-public interface mockmvcdao {
+
+public interface mockMvcDAO {
 
 	
 //	입력
@@ -13,15 +14,15 @@ public interface mockmvcdao {
 //	수정 
 //	삭제
 	
-	public int insert();
+	public int insert(String id, String password);
 	
 	public <memberVO>List list();
 	
 	public memberVO select(String id);
 	
-	public int update ();
+	public int update (String field, String changevalue);
 	
-	public int delete ();
+	public int delete (String id);
 	
 	
 	

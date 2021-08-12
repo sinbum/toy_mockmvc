@@ -5,17 +5,20 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import vo.memberVO;
 
-public class mockmvcdaoimpl implements mockmvcdao{
+
+@Repository
+public class mockMvcDAOImpl implements mockMvcDAO{
 
 	
 	@Autowired
 	DataSource datasource;
 
 	@Override
-	public int insert() {
+	public int insert(String id,String password) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -34,13 +37,13 @@ public class mockmvcdaoimpl implements mockmvcdao{
 	}
 
 	@Override
-	public int update() {
+	public int update(String field,String changevalue) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int delete() {
+	public int delete(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
