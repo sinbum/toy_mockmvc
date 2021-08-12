@@ -1,41 +1,63 @@
 package controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-import service.mockMvcService;
-import vo.memberVO;
+import service.MockMvcService;
 
 @Controller
 public class MockMvcController {
 
 	@Autowired
-	mockMvcService mock;
+	MockMvcService mock;
+	
+	ModelAndView mv;
 	
 	public MockMvcController() {
-		// TODO Auto-generated constructor stub
-	}
+		mv= new ModelAndView();
+}
 	
-	public int insert(String id,String password) {
-		return mock.insert(id,password);
+	
+	@RequestMapping("/index")
+	public ModelAndView index() {		
+		mv.setViewName("WEB-INF/view/index.jsp");		
+		return mv;		
 		}
 	
-	public <memberVO>List list(){
-		return mock.list();
+	@RequestMapping("/insertProc")
+	public ModelAndView insert(String id,String password) {
+		mv.addObject("insertresult",mock.insert(id,password));
+		mv.setViewName("WEB-INF/view/input.jsp");
+		
+		return mv;
+		
 		}
 	
-	public memberVO select(String id) {
-		return mock.select(id);
+	public ModelAndView list(){
+		
+		 mock.list();
+		 return mv;		
+		 }
+	
+	public ModelAndView select(String id) {
+		mock.select(id);
+		
+		return mv; 
 		}
 	
-	public int update (String field,String changevalue) {
-		return mock.update(field,changevalue);
+	public ModelAndView update (String field,String changevalue) {
+		
+		mock.update(field,changevalue);
+		return mv; 
 		}
 	
-	public int delete (String id) {
-		return mock.delete(id);
+	public ModelAndView delete (String id) {
+		
+		mock.delete(id);
+		return mv; 
 		}
 	
 	

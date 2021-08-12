@@ -2,10 +2,10 @@ package dao;
 
 import java.util.List;
 
-import vo.memberVO;
+import vo.MemberVO;
 
 
-public interface mockMvcDAO {
+public interface MockMvcDAO {
 
 	
 //	입력
@@ -18,7 +18,7 @@ public interface mockMvcDAO {
 	
 	public <memberVO>List list();
 	
-	public memberVO select(String id);
+	public MemberVO select(String id);
 	
 	public int update (String field, String changevalue);
 	

@@ -2,12 +2,12 @@ package vo;
 
 
 
-public class memberVO {
+public class MemberVO {
 
 	String id;
 	String password;
 	
-	public memberVO() {
+	public MemberVO() {
 	}
 	public String getId() {
 		return id;
@@ -27,8 +27,7 @@ public class memberVO {
 		return "memberVO [id=" + id + ", password=" + password + "]";
 	}
 	
-	public memberVO(String id, String password) {
-		super();
+	public MemberVO(String id, String password) {
 		this.id = id;
 		this.password = password;
 	}

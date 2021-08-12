@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import dao.mockMvcDAOImpl;
-import vo.memberVO;
+import dao.MockMvcDAOImpl;
+import vo.MemberVO;
 
 @Service
-public class mockMvcService {
+public class MockMvcService {
 
 	@Autowired
-	mockMvcDAOImpl mockdao;	
+	MockMvcDAOImpl mockdao;	
 	
-	public mockMvcService() {
+	public MockMvcService() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -27,7 +27,7 @@ public class mockMvcService {
 		return mockdao.list();
 		}
 	
-	public memberVO select(String id) {
+	public MemberVO select(String id) {
 		return mockdao.select(id);
 		}
 	
