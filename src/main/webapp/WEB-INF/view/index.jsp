@@ -8,5 +8,7 @@
 </head>
 <body>
 index.jsp
+${result}<br>
+
 </body>
 </html>

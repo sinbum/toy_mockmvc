@@ -1,6 +1,5 @@
-package dao;
+package com.example.demo.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,45 +11,33 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import vo.MemberVO;
+import com.example.demo.vo.MemberVO;
+
 
 
 
 @Repository
-public class MockMvcDAOImpl implements MockMvcDAO{
+public class MockMvcDaoImpl implements MockMvcDao{
 
-	
 	@Autowired
 	DataSource datasource;
 	
-	PreparedStatement pstmt;
-	Connection conn;
-	String sql;
-	int result;
-	ResultSet rs;
+
 	
-	String id;
-	String password;
-	
-	
-	public MockMvcDAOImpl() {
-	 try {
-		conn = datasource.getConnection();
-		
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	public MockMvcDaoImpl() {
+				
 	}
 
 	@Override
 	public int insert(String id,String password) {
-		sql="insert into member values (?,?)";
-		
+		PreparedStatement pstmt;
+		String sql="insert into member values (?,?)";
+		int result=0;
+		System.out.println(datasource);
 		try {
+			pstmt=datasource.getConnection().prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setString(2, password);			
-			pstmt = conn.prepareStatement(sql);			
+			pstmt.setString(2, password);					
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {			
@@ -58,15 +45,18 @@ public class MockMvcDAOImpl implements MockMvcDAO{
 		}
 		
 		return result;
-		
 	}
 
 	@Override
 	public List <MemberVO> list() {
-		sql="select * from memeber";		
+		ResultSet rs;
+		String sql="select * from memeber";		
 		List <MemberVO> result = new ArrayList<MemberVO>();
+		String id;
+		String password;
 		
 		try {
+			PreparedStatement pstmt = datasource.getConnection().prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				id = rs.getString("id");
@@ -74,8 +64,7 @@ public class MockMvcDAOImpl implements MockMvcDAO{
 				
 				MemberVO membervo = new MemberVO(id,password);
 				
-				result.add(membervo);
-				
+				result.add(membervo);			
 			}
 			
 		} catch (SQLException e) {
@@ -88,9 +77,13 @@ public class MockMvcDAOImpl implements MockMvcDAO{
 
 	@Override
 	public MemberVO select(String id) {
-		sql="select * from member where id = ?";
+		String sql="select * from member where id = ?";
 		MemberVO mv;
+		ResultSet rs;
+		String password;
 		try {
+			PreparedStatement pstmt= datasource.getConnection().prepareStatement(sql);
+			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
 			
 			if (rs.next()) {
@@ -110,15 +103,13 @@ public class MockMvcDAOImpl implements MockMvcDAO{
 
 	@Override
 	public int update(String field,String id,String changevalue) {
-		sql="update member set id=? where id = ?";
-		
-		try {
-			
+		String sql="update member set id=? where id = ?";
+		int result=0;
+		try {			
+			PreparedStatement pstmt = datasource.getConnection().prepareStatement(sql);
 			pstmt.setString(1, changevalue);
 			pstmt.setString(2, id);
 			result=pstmt.executeUpdate();
-						
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

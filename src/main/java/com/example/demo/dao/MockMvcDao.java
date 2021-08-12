@@ -1,11 +1,10 @@
-package dao;
+package com.example.demo.dao;
 
 import java.util.List;
 
-import vo.MemberVO;
+import com.example.demo.vo.MemberVO;
 
-
-public interface MockMvcDAO {
+public interface MockMvcDao {
 
 	
 //	입력

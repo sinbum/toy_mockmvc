@@ -1,42 +1,42 @@
-package service;
+package com.example.demo.service;
+
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.MockMvcDao;
+import com.example.demo.vo.MemberVO;
 
-import dao.MockMvcDAOImpl;
-import vo.MemberVO;
 
 @Service
 public class MockMvcService {
 
 	@Autowired
-	MockMvcDAOImpl mockdao;	
+	MockMvcDao dao;
 	
 	public MockMvcService() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public int insert(String id,String password) {
-		return mockdao.insert(id,password);
+		return dao.insert(id,password);
 		}
 	
 	public <memberVO>List list(){
-		return mockdao.list();
+		return dao.list();
 		}
 	
 	public MemberVO select(String id) {
-		return mockdao.select(id);
+		return dao.select(id);
 		}
 	
 	public int update (String field,String id,String changevalue) {
-		return mockdao.update(field,id,changevalue);
+		return dao.update(field,id,changevalue);
 		}
 	
 	public int delete (String id) {
-		return mockdao.delete(id);
+		return dao.delete(id);
 		}
 	
 	
