@@ -13,8 +13,7 @@ import vo.memberVO;
 public class mockMvcService {
 
 	@Autowired
-	mockMvcDAOImpl mockdao;
-	
+	mockMvcDAOImpl mockdao;	
 	
 	public mockMvcService() {
 		// TODO Auto-generated constructor stub

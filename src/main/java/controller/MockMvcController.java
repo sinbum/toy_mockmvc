@@ -2,12 +2,16 @@ package controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import service.mockMvcService;
 import vo.memberVO;
 
+@Controller
 public class MockMvcController {
 
-	
+	@Autowired
 	mockMvcService mock;
 	
 	public MockMvcController() {

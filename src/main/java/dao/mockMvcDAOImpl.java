@@ -19,8 +19,8 @@ public class mockMvcDAOImpl implements mockMvcDAO{
 
 	@Override
 	public int insert(String id,String password) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return 1;
 	}
 
 	@Override
